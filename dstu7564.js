@@ -827,7 +827,7 @@ function SET_ERROR(code) {
 
 function dstu7564_init(ctx, hash_nbytes) {
   CHECK_PARAM(ctx);
-  CHECK_PARAM((hash_nbytes > 0) & (hash_nbytes <= 64));
+  CHECK_PARAM((hash_nbytes > 0) & (hash_nbytes <= 256));
 
   if (hash_nbytes <= 32) {
     ctx.rounds = NR_512;
