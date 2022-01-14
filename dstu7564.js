@@ -829,13 +829,13 @@ function dstu7564_init(ctx, hash_nbytes) {
   CHECK_PARAM(ctx);
   CHECK_PARAM((hash_nbytes > 0) & (hash_nbytes <= 256));
 
-  if (hash_nbytes <= 32) {
+  if (8 <= hash_nbytes <= 256) {
     ctx.rounds = NR_512;
     ctx.columns = NB_512;
     ctx.nbytes = STATE_BYTE_SIZE_512;
     ctx.state.fill(0, 0, STATE_BYTE_SIZE_512);
     ctx.state[0] = STATE_BYTE_SIZE_512;
-  } else {
+  } else if (256 < hash_nbytes <= 512){
     ctx.rounds = NR_1024;
     ctx.columns = NB_1024;
     ctx.nbytes = STATE_BYTE_SIZE_1024;
