@@ -826,7 +826,6 @@ function SET_ERROR(code) {
 }
 
 function dstu7564_init(ctx, hash_nbytes) {
-    hash_nbytes = 64 // default value
     CHECK_PARAM(ctx);
     CHECK_PARAM((hash_nbytes > 0) & (hash_nbytes <= 64));
 
@@ -907,7 +906,8 @@ function dstu7564_final(ctx, hash) {
 function computeHash(size, buffer) {
     const hash = Buffer.alloc(size);
     const ctx = dstu7564_alloc(0);
-    dstu7564_init(ctx, size);
+    let nbytes = size / 8;
+    dstu7564_init(ctx, nbytes);
     dstu7564_update(ctx, buffer, buffer.length);
     dstu7564_final(ctx, hash);
     return hash;
