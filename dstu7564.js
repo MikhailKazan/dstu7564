@@ -906,8 +906,7 @@ function dstu7564_final(ctx, hash) {
 function computeHash(size, buffer) {
     const hash = Buffer.alloc(size);
     const ctx = dstu7564_alloc(0);
-    let nbytes = size / 8;
-    dstu7564_init(ctx, nbytes);
+    dstu7564_init(ctx, size);
     dstu7564_update(ctx, buffer, buffer.length);
     dstu7564_final(ctx, hash);
     return hash;
